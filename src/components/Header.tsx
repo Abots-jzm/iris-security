@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import LogoSVG from "../assets/Logo Header.svg";
+import { ReactComponent as LogoSVG } from "../assets/Logo Header.svg";
+import { ReactComponent as HamburgerSVG } from "../assets/Hamburger.svg";
+import { ReactComponent as CloseSVG } from "../assets/Close.svg";
+import { ReactComponent as HomeSVG } from "../assets/Home.svg";
+import { ReactComponent as ServicesSVG } from "../assets/Services.svg";
+import { ReactComponent as AboutSVG } from "../assets/About.svg";
+import { ReactComponent as ContactSVG } from "../assets/Contact.svg";
 import LogoWhiteSVG from "../assets/Logo-White.svg";
-import HamburgerSVG from "../assets/Hamburger.svg";
-import CloseSVG from "../assets/Close.svg";
-import HomeSVG from "../assets/Home.svg";
-import ServicesSVG from "../assets/Services.svg";
-import AboutSVG from "../assets/About.svg";
-import ContactSVG from "../assets/Contact.svg";
 import styled from "styled-components";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 type activeLinksType = "home" | "services" | "about" | "contact";
 
@@ -29,67 +29,64 @@ const Header = () => {
 	}
 
 	return (
-		<>
-			<HeaderContainer>
-				<Logo>
-					<img src={LogoSVG} alt="Logo" />
-				</Logo>
-				<MainNav>
-					<NavLink to="/" onClick={linkClickedHandler.bind(null, "home")}>
-						<NavItem active={activeLink === "home"}>Home</NavItem>
+		<HeaderContainer>
+			<Logo>
+				<LogoSVG />
+			</Logo>
+			<MainNav>
+				<NavLink to="/" onClick={linkClickedHandler.bind(null, "home")}>
+					<NavItem active={activeLink === "home"}>Home</NavItem>
+				</NavLink>
+				<NavLink to="/services" onClick={linkClickedHandler.bind(null, "services")}>
+					<NavItem active={activeLink === "services"}>Services</NavItem>
+				</NavLink>
+				<NavLink to="/about" onClick={linkClickedHandler.bind(null, "about")}>
+					<NavItem active={activeLink === "about"}>About</NavItem>
+				</NavLink>
+				<NavLink to="/contact" onClick={linkClickedHandler.bind(null, "contact")}>
+					<NavItem active={activeLink === "contact"}>Contact</NavItem>
+				</NavLink>
+			</MainNav>
+			<Hamburger onClick={openDrawer}>
+				<HamburgerSVG />
+			</Hamburger>
+			<MobileNav isOpen={drawerIsOpen}>
+				<MobileTop>
+					<div>
+						<img src={LogoWhiteSVG} alt="logo" />
+					</div>
+					<Close onClick={closeDrawer}>
+						<CloseSVG />
+					</Close>
+				</MobileTop>
+				<MobileMain>
+					<NavLink to="/" onClick={closeDrawer}>
+						<MobileNavItem>
+							<HomeSVG />
+							Home
+						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/services" onClick={linkClickedHandler.bind(null, "services")}>
-						<NavItem active={activeLink === "services"}>Services</NavItem>
+					<NavLink to="/services" onClick={closeDrawer}>
+						<MobileNavItem>
+							<ServicesSVG />
+							Services
+						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/about" onClick={linkClickedHandler.bind(null, "about")}>
-						<NavItem active={activeLink === "about"}>About</NavItem>
+					<NavLink to="/about" onClick={closeDrawer}>
+						<MobileNavItem>
+							<AboutSVG />
+							About
+						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/contact" onClick={linkClickedHandler.bind(null, "contact")}>
-						<NavItem active={activeLink === "contact"}>Contact</NavItem>
+					<NavLink to="/contact" onClick={closeDrawer}>
+						<MobileNavItem>
+							<ContactSVG />
+							Contact
+						</MobileNavItem>
 					</NavLink>
-				</MainNav>
-				<Hamburger onClick={openDrawer}>
-					<img src={HamburgerSVG} alt="hamburger menu" />
-				</Hamburger>
-				<MobileNav isOpen={drawerIsOpen}>
-					<MobileTop>
-						<div>
-							<img src={LogoWhiteSVG} alt="white logo" />
-						</div>
-						<Close onClick={closeDrawer}>
-							<img src={CloseSVG} alt="close" />
-						</Close>
-					</MobileTop>
-					<MobileMain>
-						<NavLink to="/" onClick={closeDrawer}>
-							<MobileNavItem>
-								<img src={HomeSVG} alt="home icon" />
-								Home
-							</MobileNavItem>
-						</NavLink>
-						<NavLink to="/services" onClick={closeDrawer}>
-							<MobileNavItem>
-								<img src={ServicesSVG} alt="services icon" />
-								Services
-							</MobileNavItem>
-						</NavLink>
-						<NavLink to="/about" onClick={closeDrawer}>
-							<MobileNavItem>
-								<img src={AboutSVG} alt="about icon" />
-								About
-							</MobileNavItem>
-						</NavLink>
-						<NavLink to="/contact" onClick={closeDrawer}>
-							<MobileNavItem>
-								<img src={ContactSVG} alt="contact icon" />
-								Contact
-							</MobileNavItem>
-						</NavLink>
-					</MobileMain>
-				</MobileNav>
-			</HeaderContainer>
-			<Outlet />
-		</>
+				</MobileMain>
+			</MobileNav>
+		</HeaderContainer>
 	);
 };
 
@@ -155,10 +152,6 @@ const Hamburger = styled.div`
 	cursor: pointer;
 	display: none;
 
-	img {
-		width: 100%;
-	}
-
 	@media only screen and (max-width: 600px) {
 		cursor: none;
 		display: block;
@@ -220,14 +213,14 @@ const HeaderContainer = styled.div`
 const Logo = styled.div`
 	height: 5rem;
 
-	img {
+	svg {
 		width: 100%;
 	}
 
 	@media only screen and (max-width: 600px) {
 		height: 3.6rem;
 
-		img {
+		svg {
 			height: 3.6rem;
 		}
 	}
