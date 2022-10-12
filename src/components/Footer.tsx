@@ -1,7 +1,7 @@
 import React from "react";
 import Section from "../ui/Section";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LogoWhiteSVG from "../assets/Logo-White.svg";
 import { ReactComponent as FacebookSVG } from "../assets/Facebook.svg";
 import { ReactComponent as InstagramSVG } from "../assets/Instagram.svg";
@@ -26,16 +26,16 @@ const Footer = () => {
 					<FooterContainer>
 						<FooterNav>
 							<li>
-								<NavLink to="/">Home</NavLink>
+								<Link to="/">Home</Link>
 							</li>
 							<li>
-								<NavLink to="/services">Services</NavLink>
+								<Link to="/services">Services</Link>
 							</li>
 							<li>
-								<NavLink to="/about">About</NavLink>
+								<Link to="/about">About</Link>
 							</li>
 							<li>
-								<NavLink to="/contact">Contact</NavLink>
+								<Link to="/contact">Contact</Link>
 							</li>
 						</FooterNav>
 						<Socials>
@@ -168,6 +168,7 @@ const EmailForm = styled.form<IEmailForm>`
 		color: white;
 		border: none;
 		padding-inline: 1.5rem;
+		cursor: pointer;
 	}
 `;
 

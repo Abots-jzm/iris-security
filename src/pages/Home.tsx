@@ -3,7 +3,6 @@ import Section from "../ui/Section";
 import BlueCard from "../components/home/BlueCard";
 import styled from "styled-components";
 import IllustrationSVG from "../assets/home/Hero Illustration.svg";
-import { ReactComponent as RightArrowSVG } from "../assets/arrow_right_alt.svg";
 import StorageProtectionSVG from "../assets/home/storage protection icon.svg";
 import ThreatProtectionSVG from "../assets/home/Threat protection icon.svg";
 import VaultSolutionSVg from "../assets/home/vault solution icon.svg";
@@ -11,7 +10,8 @@ import CompaniesPNG from "../assets/home/Companies.svg";
 import EncryptionPNG from "../assets/home/Encryption.png";
 import TwentyFourSevenPNG from "../assets/home/24-7.png";
 import ServicesCard from "../components/home/ServicesCard";
-import FileProtectionPNG from "../assets/home/file-protection-5997798-4973264.png";
+import ButtonPrimary from "../ui/ButtonPrimary";
+import Statement from "../components/Statement";
 
 const Home = () => {
 	return (
@@ -22,10 +22,7 @@ const Home = () => {
 						<Details>
 							<h1>Protect and Secure your data from prying eyes</h1>
 							<p>Keep hackers at bay with Iris Security</p>
-							<ButtonWithIcon>
-								<span>Learn More</span>
-								<RightArrowSVG />
-							</ButtonWithIcon>
+							<ButtonPrimary />
 						</Details>
 						<Illustration>
 							<img src={IllustrationSVG} alt="Illustration" />
@@ -58,65 +55,12 @@ const Home = () => {
 					</ServicesContainer>
 				</MiddleContainer>
 			</Section>
-			<Section backgroundColor={"#002b7a"}>
-				<StatementContainer>
-					<div>
-						<img src={FileProtectionPNG} alt="illustration" />
-					</div>
-					<div>
-						<p>Iris Security Provides Better Data Protection to Individuals and Businesses than 80% of Data Security Firms</p>
-						<ButtonWithIcon>
-							<span>Learn More</span>
-							<RightArrowSVG />
-						</ButtonWithIcon>
-					</div>
-				</StatementContainer>
-			</Section>
+			<Statement />
 		</>
 	);
 };
 
 export default Home;
-
-const StatementContainer = styled.div`
-	color: white;
-	display: flex;
-	padding: 1.6rem 0;
-	justify-content: center;
-	align-items: center;
-	gap: 7.1rem;
-	text-align: right;
-
-	button {
-		margin-left: auto;
-	}
-
-	p {
-		margin-bottom: 4rem;
-		font-size: 4rem;
-		font-weight: 600;
-	}
-
-	@media only screen and (max-width: 900px) {
-		flex-direction: column;
-		padding: 2.4rem 0;
-		gap: 2rem;
-		text-align: center;
-
-		img {
-			width: 20rem;
-		}
-
-		button {
-			width: 100%;
-		}
-
-		p {
-			font-size: 2.8rem;
-			margin-bottom: 2rem;
-		}
-	}
-`;
 
 const ServicesContainer = styled.div`
 	display: flex;
@@ -158,38 +102,6 @@ const MiddleContainer = styled.div`
 
 	@media only screen and (max-width: 768px) {
 		margin: 2.4rem 0 5.2rem;
-	}
-`;
-
-const ButtonWithIcon = styled.button`
-	background-color: white;
-	color: #204d9c;
-	font: inherit;
-	border: none;
-	outline: none;
-	font-size: 2rem;
-	font-weight: 500;
-	display: flex;
-	gap: 1rem;
-	justify-content: center;
-	align-items: baseline;
-	padding: 2rem;
-	border-radius: 4rem;
-	cursor: pointer;
-
-	svg {
-		transition: all 0.2s;
-	}
-
-	&:hover {
-		svg {
-			transform: translateX(5px);
-		}
-	}
-
-	@media only screen and (max-width: 600px) {
-		font-size: 1.6rem;
-		padding: 1.8rem;
 	}
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as LogoSVG } from "../assets/Logo Header.svg";
 import { ReactComponent as HamburgerSVG } from "../assets/Hamburger.svg";
 import { ReactComponent as CloseSVG } from "../assets/Close.svg";
@@ -8,17 +8,21 @@ import { ReactComponent as AboutSVG } from "../assets/About.svg";
 import { ReactComponent as ContactSVG } from "../assets/Contact.svg";
 import LogoWhiteSVG from "../assets/Logo-White.svg";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 type activeLinksType = "home" | "services" | "about" | "contact";
 
 const Header = () => {
 	const [activeLink, setActiveLink] = useState<activeLinksType>("home");
 	const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+	const location = useLocation();
 
-	function linkClickedHandler(active: activeLinksType) {
-		setActiveLink(active);
-	}
+	useEffect(() => {
+		if (location.pathname === "/") setActiveLink("home");
+		if (location.pathname === "/services") setActiveLink("services");
+		if (location.pathname === "/about") setActiveLink("about");
+		if (location.pathname === "/contact") setActiveLink("contact");
+	}, [location]);
 
 	function openDrawer() {
 		setDrawerIsOpen(true);
@@ -34,16 +38,16 @@ const Header = () => {
 				<LogoSVG />
 			</Logo>
 			<MainNav>
-				<NavLink to="/" onClick={linkClickedHandler.bind(null, "home")}>
+				<NavLink to="/">
 					<NavItem active={activeLink === "home"}>Home</NavItem>
 				</NavLink>
-				<NavLink to="/services" onClick={linkClickedHandler.bind(null, "services")}>
+				<NavLink to="/services">
 					<NavItem active={activeLink === "services"}>Services</NavItem>
 				</NavLink>
-				<NavLink to="/about" onClick={linkClickedHandler.bind(null, "about")}>
+				<NavLink to="/about">
 					<NavItem active={activeLink === "about"}>About</NavItem>
 				</NavLink>
-				<NavLink to="/contact" onClick={linkClickedHandler.bind(null, "contact")}>
+				<NavLink to="/contact">
 					<NavItem active={activeLink === "contact"}>Contact</NavItem>
 				</NavLink>
 			</MainNav>
