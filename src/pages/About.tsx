@@ -112,8 +112,10 @@ const Illustration = styled.div`
 	left: 50%;
 	transform: translateX(-50%);
 
-	img {
-		width: 25rem;
+	@media only screen and (max-width: 600px) {
+		img {
+			width: 25rem;
+		}
 	}
 `;
 
