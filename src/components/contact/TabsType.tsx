@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TabCard from "./TabCard";
-import Bulington from "../../assets/contact/Burlington.jpg";
+import Burlington from "../../assets/contact/Burlington.jpg";
 import Dallas from "../../assets/contact/Dallas.jpg";
 import Dubai from "../../assets/contact/Dubai.jpg";
 import Johannesburg from "../../assets/contact/Johannesburg.jpg";
@@ -11,7 +11,7 @@ import Paris from "../../assets/contact/Paris.jpg";
 const DATA = {
 	NorthAndSouthAmerica: [
 		{
-			image: Bulington,
+			image: Burlington,
 			name: "Burlington, MA",
 			number: ["[758]-494-5800"],
 			address: ["3 Van de Graff Drive", "2nd Floor", "Burlington, MA 01803", "United States"],

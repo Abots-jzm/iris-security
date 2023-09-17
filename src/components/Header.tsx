@@ -9,6 +9,7 @@ import { ReactComponent as ContactSVG } from "../assets/Contact.svg";
 import LogoWhiteSVG from "../assets/Logo-White.svg";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
+import { Paths } from "../App";
 
 type activeLinksType = "home" | "services" | "about" | "contact";
 
@@ -18,10 +19,14 @@ const Header = () => {
 	const location = useLocation();
 
 	useEffect(() => {
-		if (location.pathname === "/") setActiveLink("home");
-		if (location.pathname === "/services") setActiveLink("services");
-		if (location.pathname === "/about") setActiveLink("about");
-		if (location.pathname === "/contact") setActiveLink("contact");
+		if (location.pathname === Paths.HOME) setActiveLink("home");
+		if (location.pathname === Paths.SERVICES) setActiveLink("services");
+		if (location.pathname === Paths.ABOUT) setActiveLink("about");
+		if (location.pathname === Paths.CONTACT) setActiveLink("contact");
+	}, [location]);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
 	}, [location]);
 
 	function openDrawer() {
@@ -38,16 +43,16 @@ const Header = () => {
 				<LogoSVG />
 			</Logo>
 			<MainNav>
-				<NavLink to="/">
+				<NavLink to={Paths.HOME}>
 					<NavItem active={activeLink === "home"}>Home</NavItem>
 				</NavLink>
-				<NavLink to="/services">
+				<NavLink to={Paths.SERVICES}>
 					<NavItem active={activeLink === "services"}>Services</NavItem>
 				</NavLink>
-				<NavLink to="/about">
+				<NavLink to={Paths.ABOUT}>
 					<NavItem active={activeLink === "about"}>About</NavItem>
 				</NavLink>
-				<NavLink to="/contact">
+				<NavLink to={Paths.CONTACT}>
 					<NavItem active={activeLink === "contact"}>Contact</NavItem>
 				</NavLink>
 			</MainNav>
@@ -64,25 +69,25 @@ const Header = () => {
 					</Close>
 				</MobileTop>
 				<MobileMain>
-					<NavLink to="/" onClick={closeDrawer}>
+					<NavLink to={Paths.HOME} onClick={closeDrawer}>
 						<MobileNavItem>
 							<HomeSVG />
 							Home
 						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/services" onClick={closeDrawer}>
+					<NavLink to={Paths.SERVICES} onClick={closeDrawer}>
 						<MobileNavItem>
 							<ServicesSVG />
 							Services
 						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/about" onClick={closeDrawer}>
+					<NavLink to={Paths.ABOUT} onClick={closeDrawer}>
 						<MobileNavItem>
 							<AboutSVG />
 							About
 						</MobileNavItem>
 					</NavLink>
-					<NavLink to="/contact" onClick={closeDrawer}>
+					<NavLink to={Paths.CONTACT} onClick={closeDrawer}>
 						<MobileNavItem>
 							<ContactSVG />
 							Contact
